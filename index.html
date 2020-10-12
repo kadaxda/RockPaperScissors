@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let gamesWon = 0;
+        let gamesLost = 0;
+        let gamesPlayed = 0;
+
+
+        function getRandomInt(max){
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+
+        function computerPlay() {
+            let computerNum = getRandomInt(3);
+            let computerPick = "";
+
+            if (computerNum == 0) {
+                return "rock";
+            }
+            else if (computerNum == 1) {
+                return "scissors";
+            }
+            else {
+                return "paper";
+            }
+        
+        }
+
+
+        function playOneRound(playerSelection, computerSelection) {
+            playerSelection = playerSelection.toLowerCase();
+            computerSelection = computerSelection.toLowerCase();
+
+            if (playerSelection == "rock" && computerSelection == "paper") {
+                gamesLost += 1;
+                gamesPlayed += 1;
+                
+                return "You loose! Paper beats Rock!";
+                
+            }
+            else if (playerSelection == "paper" && computerSelection == "rock") {
+                gamesWon += 1;
+                gamesPlayed += 1;
+                
+                return "You Win! Paper beats Rock!";
+                
+            }
+            else if (playerSelection == "scissors" && computerSelection == "rock") {
+                gamesLost += 1;
+                gamesPlayed += 1;
+                return "You Loose! Rock beats Scissors!";
+
+            }
+            else if (playerSelection == "rock" && computerSelection == "scissors") {
+                gamesWon += 1;
+                gamesPlayed += 1;
+                return "You Win! Rock beats Scissors!";
+
+            }
+            else if (playerSelection == "paper" && computerSelection == "scissors") {
+                gamesLost += 1;
+                gamesPlayed += 1;
+                return "You Loose! Scissors beats Paper!";
+
+            }
+            else if (playerSelection == "scissors" && computerSelection == "paper") {
+                gamesWon += 1;
+                gamesPlayed += 1;
+                return "You Win! Scissors beats Paper!";
+
+            }
+            else {
+                gamesPlayed += 1;
+                return "Its a tie!";
+
+            }
+            
+        } 
+
+        function game() {
+            computerPick = computerPlay();
+            playerPick = prompt("Rock, paper or scissors?");
+            res = playOneRound(playerPick, computerPick);
+            console.log(res);
+
+            computerPick = computerPlay();
+            playerPick = prompt("Rock, paper or scissors?");
+            res = playOneRound(playerPick, computerPick);
+            console.log(res);
+
+            computerPick = computerPlay();
+            playerPick = prompt("Rock, paper or scissors?");
+            res = playOneRound(playerPick, computerPick);
+            console.log(res);
+
+            console.log("You won " + gamesWon + " and lost " + gamesLost + " and played " + gamesPlayed + " games.")
+            
+        }
+        game();
+        
+
+       
+
+
+
+
+    </script>
+</body>
+</html>
